@@ -1,0 +1,3 @@
+This repository demonstrates a Retrieval-Augmented Generation (RAG) chat
+experience powered by local Ollama models. Documents are chunked, embedded,
+stored in a vector index, and retrieved at query time to ground answers.

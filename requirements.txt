@@ -1,0 +1,11 @@
+fastapi
+uvicorn[standard]
+langchain
+langchain-text-splitters
+langchain-community
+langchain-ollama
+faiss-cpu
+ollama
+python-dotenv
+ruff
+pytest

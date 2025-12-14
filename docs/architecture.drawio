@@ -1,0 +1,52 @@
+<mxfile host="app.diagrams.net" modified="2024-12-14T00:00:00Z" agent="drawio" version="24.4.13" editor="www.drawio.com" type="device">
+  <diagram id="RAG-Architecture" name="RAG">
+    <mxGraphModel dx="1280" dy="720" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="user" value="User (Browser / cURL)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="80" y="240" width="140" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="api" value="FastAPI/Uvicorn&#xa;0.0.0.0:5000&#xa;/chat (stream) /health" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="260" y="220" width="170" height="100" as="geometry"/>
+        </mxCell>
+        <mxCell id="faiss" value="FAISS Index&#xa;vectors/" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="480" y="210" width="140" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="ollama_embed" value="Ollama&#xa;Embedding Model&#xa;(nomic-embed-text)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="480" y="310" width="170" height="70" as="geometry"/>
+        </mxCell>
+        <mxCell id="ollama_chat" value="Ollama&#xa;Chat Model&#xa;(llama3)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="480" y="120" width="170" height="70" as="geometry"/>
+        </mxCell>
+        <mxCell id="data" value="data/*.txt&#xa;Raw documents" style="shape=folder;whiteSpace=wrap;html=1;rounded=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="80" y="100" width="140" height="70" as="geometry"/>
+        </mxCell>
+        <mxCell id="ingest" value="Ingest Script&#xa;src/ingest.py" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="260" y="110" width="170" height="70" as="geometry"/>
+        </mxCell>
+        <mxCell id="edge1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=block;html=1;strokeColor=#6c8ebf;" edge="1" parent="1" source="user" target="api">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="edge2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=block;html=1;strokeColor=#82b366;" edge="1" parent="1" source="api" target="faiss">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="edge3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=block;html=1;strokeColor=#82b366;" edge="1" parent="1" source="api" target="ollama_chat">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="edge4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=block;html=1;strokeColor=#82b366;" edge="1" parent="1" source="faiss" target="api">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="edge5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=block;html=1;strokeColor=#9673a6;" edge="1" parent="1" source="data" target="ingest">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="edge6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=block;html=1;strokeColor=#9673a6;" edge="1" parent="1" source="ingest" target="ollama_embed">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="edge7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=block;html=1;strokeColor=#9673a6;" edge="1" parent="1" source="ollama_embed" target="faiss">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
